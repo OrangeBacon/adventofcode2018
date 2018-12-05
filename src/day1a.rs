@@ -3,8 +3,8 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
 
-fn main() {
-    let path = Path::new("day1.txt");
+pub fn day1a() {
+    let path = Path::new("data/day1.txt");
     let display = path.display();
 
     let mut file = match File::open(&path) {
@@ -15,7 +15,7 @@ fn main() {
     let mut s = String::new();
     match file.read_to_string(&mut s) {
         Err(why) => panic!("Couldn't read {}: {}", display, why.description()),
-        Ok(_) => println!("Read file"),
+        Ok(_) => {}
     }
     let lines: Vec<i32> = s
         .split_whitespace()
@@ -28,19 +28,8 @@ fn main() {
         }).collect();
 
     let mut total = 0;
-    let mut freq: Vec<i32> = vec![];
-    let mut i: usize = 0;
-    loop {
-        total += lines[i % lines.len()];
-        if freq.contains(&total) {
-            break;
-        }
-        freq.push(total);
-        if i % 100 == 0 {
-            println!("{}", total);
-        }
-        i += 1;
+    for line in lines {
+        total += line;
     }
-    //println!("{:?}", freq);
     println!("{}", total);
 }

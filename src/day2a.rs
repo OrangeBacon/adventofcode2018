@@ -4,8 +4,8 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
 
-fn main() {
-    let path = Path::new("day2.txt");
+pub fn day2a() {
+    let path = Path::new("data/day2.txt");
     let display = path.display();
 
     let mut file = match File::open(&path) {
@@ -16,7 +16,7 @@ fn main() {
     let mut s = String::new();
     match file.read_to_string(&mut s) {
         Err(why) => panic!("Couldn't read {}: {}", display, why.description()),
-        Ok(_) => println!("Read file"),
+        Ok(_) => {}
     }
 
     let mut twos: i32 = 0;
