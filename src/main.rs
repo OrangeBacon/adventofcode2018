@@ -1,4 +1,5 @@
 use std::env;
+extern crate regex;
 
 enum Part {
     First,
@@ -63,24 +64,27 @@ fn main() {
 struct ID(u32, Part);
 
 mod day1a;
-mod day1b;
-mod day2a;
-mod day2b;
 use day1a::day1a;
+mod day1b;
 use day1b::day1b;
+mod day2a;
 use day2a::day2a;
+mod day2b;
 use day2b::day2b;
+mod day3a;
+use day3a::day3a;
+mod day3b;
+use day3b::day3b;
 
 fn run(day: u32, part: Part) {
-    if day > 2 {
-        println!("Day too high");
-    }
     let id = ID(day, part);
     match id {
         ID(1, Part::First) => day1a(),
         ID(1, Part::Second) => day1b(),
         ID(2, Part::First) => day2a(),
         ID(2, Part::Second) => day2b(),
+        ID(3, Part::First) => day3a(),
+        ID(3, Part::Second) => day3b(),
         ID(_, _) => println!("Could not find day/part"),
     }
 }
