@@ -84,7 +84,7 @@ pub fn day3b() {
             }
         }
     }
-    println!("{:?}", overlaps);
+
     let result = overlaps.iter().position(|s| !s).unwrap() + 1;
     println!("{}", result);
 }
