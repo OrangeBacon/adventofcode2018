@@ -74,6 +74,7 @@ mod day4b;
 mod day5a;
 mod day5b;
 mod day6a;
+mod day6b;
 mod day7a;
 mod day7b;
 mod day8a;
@@ -93,6 +94,7 @@ fn run(day: u32, part: Part) {
         ID(5, Part::First) => day5a::day5a(),
         ID(5, Part::Second) => day5b::day5b(),
         ID(6, Part::First) => day6a::day6a(),
+        ID(6, Part::Second) => day6b::day6b(),
         ID(7, Part::First) => day7a::day7a(),
         ID(7, Part::Second) => day7b::day7b(),
         ID(8, Part::First) => day8a::day8a(),

@@ -3,17 +3,8 @@ use std::error::Error;
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
-use std::cmp;
 
-#[derive(Clone, Copy, Debug)]
-struct Loc {
-    claimed: bool,
-    id: usize,
-    distance: u32,
-    contested: bool,
-}
-
-pub fn day6a() {
+pub fn day6b() {
     let path = Path::new("data/day6.txt");
     let display = path.display();
 
@@ -67,43 +58,19 @@ pub fn day6a() {
     width -= x;
     height -= y;
 
-    let mut area = vec![vec![Loc{claimed: false, contested: false, distance: 0, id: 0}; height + 1]; width + 1];
-
-    for (x, row) in area.iter_mut().enumerate() {
-        for (y, location) in row.iter_mut().enumerate() {
-            for (id, coord) in coords.iter().enumerate() {
-                let dist = (coord.0 as i32 - x as i32).abs() as u32
+    let mut count = 0;
+    for x in 0..=width {
+        for y in 0..=height {
+            let mut dist = 0;
+            for coord in &coords {
+                dist += (coord.0 as i32 - x as i32).abs() as u32
                     + (coord.1 as i32 - y as i32).abs() as u32;
-                if !location.claimed {
-                    location.distance = dist;
-                    location.claimed = true;
-                } else if location.distance > dist {
-                    location.contested = false;
-                    location.distance = dist;
-                    location.id = id;
-                } else if location.distance == dist {
-                    location.contested = true;
-                }
+            }
+            if dist < 10000 {
+                count += 1;
             }
         }
     }
 
-    let mut counts = vec![(0, true); coords.len()];
-
-    for (x, row) in area.iter().enumerate() {
-        for (y, location) in row.iter().enumerate() {
-            if !location.contested {
-                if x == 0 || y == 0 || x == width || y == height {
-                    counts[location.id].1 = false;
-                }
-                if counts[location.id].1 {
-                    counts[location.id].0 += 1;
-                }
-            }
-        }
-    }
-
-    let max = counts.into_iter().filter(|s|s.1).fold(0, |current, s| cmp::max(current, s.0));
-
-    println!("{}", max);
+    println!("{}", count);
 }
