@@ -64,39 +64,29 @@ fn main() {
 struct ID(u32, Part);
 
 mod day1a;
-use day1a::day1a;
 mod day1b;
-use day1b::day1b;
 mod day2a;
-use day2a::day2a;
 mod day2b;
-use day2b::day2b;
 mod day3a;
-use day3a::day3a;
 mod day3b;
-use day3b::day3b;
 mod day4a;
-use day4a::day4a;
 mod day4b;
-use day4b::day4b;
 mod day5a;
-use day5a::day5a;
 mod day5b;
-use day5b::day5b;
 
 fn run(day: u32, part: Part) {
     let id = ID(day, part);
     match id {
-        ID(1, Part::First) => day1a(),
-        ID(1, Part::Second) => day1b(),
-        ID(2, Part::First) => day2a(),
-        ID(2, Part::Second) => day2b(),
-        ID(3, Part::First) => day3a(),
-        ID(3, Part::Second) => day3b(),
-        ID(4, Part::First) => day4a(),
-        ID(4, Part::Second) => day4b(),
-        ID(5, Part::First) => day5a(),
-        ID(5, Part::Second) => day5b(),
+        ID(1, Part::First) => day1a::day1a(),
+        ID(1, Part::Second) => day1b::day1b(),
+        ID(2, Part::First) => day2a::day2a(),
+        ID(2, Part::Second) => day2b::day2b(),
+        ID(3, Part::First) => day3a::day3a(),
+        ID(3, Part::Second) => day3b::day3b(),
+        ID(4, Part::First) => day4a::day4a(),
+        ID(4, Part::Second) => day4b::day4b(),
+        ID(5, Part::First) => day5a::day5a(),
+        ID(5, Part::Second) => day5b::day5b(),
         ID(_, _) => println!("Could not find day/part"),
     }
 }
