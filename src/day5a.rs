@@ -45,6 +45,5 @@ pub fn day5a() {
         }
     }
 
-    println!("{:?}", items);
     println!("{:?}", items.len());
 }

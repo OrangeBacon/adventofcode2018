@@ -42,7 +42,7 @@ pub fn day4a() {
         Ok(_) => {}
     }
 
-    let main_re = Regex::new(r"\[1518-(\d{2})-(\d{2}) (\d{2}):(\d{2})\] ([^\[\n]+)").unwrap();
+    let main_re = Regex::new(r"\[1518-(\d{2})-(\d{2}) (\d{2}):(\d{2})\] ([^\n\r]+)").unwrap();
     let guard_re = Regex::new(r"Guard #(\d+) begins shift").unwrap();
     let mut dates = vec![];
     for cap in main_re.captures_iter(&s) {
@@ -59,7 +59,7 @@ pub fn day4a() {
                     .parse()
                     .unwrap(),
             ),
-            _ => panic!("Should not get here, {}", &cap[6]),
+            _ => panic!("Should not get here, {}", &cap[0]),
         };
         dates.push(Item {
             month: cap[1].parse().unwrap(),
